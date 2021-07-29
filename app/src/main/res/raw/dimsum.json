@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "dimsumbot-unvw",
+  "private_key_id": "a67fe2298a22832d115c32b4cf09655bab9d6e4a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCp2bkn04KbnBp6\n+IYzyRJH8jpyrF837c7sxhppqeuuKfKox+ZhL2Lce4+tGykiALmuWdV45lTcDkJk\n6eZDlYYXak1eX2xlG5Hm4HAwFP+NeeSuNNC1woMwt0D/bidi9SCU2xSrWuMniUJJ\nOWoJxEp2lzXSTk5/zd9tsaM8QTbxX3h2VbIwqLJaKK2Ttn4xtoAbuuu892ceaFP6\nNy4EV2ZrUxxGjntk+dvwBoT6ev/WkjMFSMoUorFCxYLYV/ZLtN2ENX9oOOVE8KUY\nZJNLrjSsZD1MdXz7hOHuJyEI9C9XpwZ5/ltf60cwxIHp3+Grmf1cvxqnmuos4H9j\n4EMw4v3rAgMBAAECggEAKyBxz4d4i8tku+Gbrc15u1PpfFGBMeHLnzoj3b177rKO\n/0UWnYmbKBGlpxYU6SHXA8qilfqiBGgIergbNADk1dAzielfzAJmlwFY6xSB2Ong\n40zcy7Hyfq2hLtpI3OsR1UoVYvcGY3UKJC6UWpuBLsBxNY+VhgT/nMo0gOmsKjgh\n3JclFhgax/bOC2BuQNrekyIcljGnGL380o145ZgpGUT7gWMiR81lLtUPpo5oBnfH\nPmp15Ow4UhuaTwCVh7r4ocHFcOlT+5IhsEMHozhCXuxlWa078vfaewMMiG/aYA/D\n67z58wZW6cqtCXAsqb14VgNZVvuu0NDI+tFB+c4NRQKBgQDgw75UvkpKqqOmAn70\n+JRwcxtkFofpb4WWGtH0pN10FhSAt9DQVmWwz2hxoOt/ZzmMaFiCMQTcSAFY0gqg\n65X4OKEF4gxMet5cYnDV+DzWLKK3To4VAu/k+r2Nf7DBysdah3A8N9o6PsB13wvY\nZ6DAig/6x2o+WS+MKdbKCRJDFwKBgQDBdFjNemloF519f9dGf2nmB3S2X/MHV5hA\nKRDJ+au8BTMWoAfRNevKBOYwZqjGz8rl4pRbETiZuPJDmWJJRWAUmRY6szrxthfl\nL0KvVIll1aBOB+UHAGhpzbCkiTAvbDYD98Wf9dcxFKrQW5ORPVs5zN2zyg1OXkMt\n/CKdOQOwTQKBgGGtj4yCegTC7YWathO957yKuY+gnwYamiJmm3HHKBpn8hcSSyQP\nN/hD2q7u8QkYEhFr03MY3HTisfsopMfUOgN6kLfeydt+1h2uBj1muQGWukwRTnvh\nH+IR+ciBgo5lkodMLsFswGDpnnhbK2mrd1fVaCZi/VAFMD2ofRimIpKXAoGAXDch\nvZEEfeID6Lbv32MND+Gt+OFz76QJp0vr/NtOyamQ2NAf6dJSO1Jqh9fnzB1xEnQX\nU/G5kU1f7mlHOLYhPrBasFCPYHj0mwMUPo+Fj01txMRuoA/JteWetk/O8Ewc03dg\ndQezNGotonSEu08MFVlatUEzZo/4ZgsyVM/AumECgYB/a9Gbhe7p4hH5pDo6xSbG\nmwb5XHAG31ZoSDdyJJU6gwRirPTCa8Zd0bX7sQp3HPZxFrs9WUiWn5R2jwpx934f\nevNAVLw2d7suJo98UaqyVr8zEIXlkjpxjv/CfUFdTyvph7eqEMPLSmFdBCvpKc99\nBHF9emmZpuNEz9OGmU9/2g==\n-----END PRIVATE KEY-----\n",
+  "client_email": "dinsumbot@dimsumbot-unvw.iam.gserviceaccount.com",
+  "client_id": "100211625897977116334",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dinsumbot%40dimsumbot-unvw.iam.gserviceaccount.com"
+}
