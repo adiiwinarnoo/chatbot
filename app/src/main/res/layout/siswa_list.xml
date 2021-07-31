@@ -59,6 +59,15 @@
             android:textStyle="bold"
             android:textColor="@color/teal_700"
             />
+        <TextView
+            android:id="@+id/tv_jekel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenis kelamin :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/teal_700"
+            />
 
 
     </LinearLayout>

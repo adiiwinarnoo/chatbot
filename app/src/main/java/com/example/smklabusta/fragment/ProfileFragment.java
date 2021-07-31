@@ -1,29 +1,26 @@
 package com.example.smklabusta.fragment;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.smklabusta.Activity.LoginActivity;
 import com.example.smklabusta.Adapter.profilAdapter;
 import com.example.smklabusta.Api.SiswaRetrofit;
+import com.example.smklabusta.Model.ResponseProfilRelasi;
 import com.example.smklabusta.Model.ResponseSiswaProfil;
-import com.example.smklabusta.Model.SiswaProfilItem;
+import com.example.smklabusta.Model.SiswaRelasiItem;
 import com.example.smklabusta.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -84,13 +81,13 @@ public class ProfileFragment extends Fragment {
 
     private void tampilProfil() {
 
-        SiswaRetrofit.service.getsiswa(nisnfix).enqueue(new Callback<ResponseSiswaProfil>() {
+        SiswaRetrofit.service.getsiswa(nisnfix).enqueue(new Callback<ResponseProfilRelasi>() {
             @Override
-            public void onResponse(Call<ResponseSiswaProfil> call, Response<ResponseSiswaProfil> response) {
+            public void onResponse(Call<ResponseProfilRelasi> call, Response<ResponseProfilRelasi> response) {
                 int status = response.body().getStatus();
 
                 if (status ==1){
-                    List<SiswaProfilItem> siswaProfilItems = response.body().getSiswaProfil();
+                    List<SiswaRelasiItem> siswaProfilItems = response.body().getSiswaRelasi();
                     profilAdapter adapter = new profilAdapter(siswaProfilItems, getActivity());
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -98,9 +95,10 @@ public class ProfileFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ResponseSiswaProfil> call, Throwable t) {
+            public void onFailure(Call<ResponseProfilRelasi> call, Throwable t) {
 
             }
+
         });
     }
 

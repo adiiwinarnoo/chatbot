@@ -2,6 +2,7 @@ package com.example.smklabusta.Api;
 
 import com.example.smklabusta.Model.ResponseData;
 import com.example.smklabusta.Model.ResponsePesan;
+import com.example.smklabusta.Model.ResponseProfilRelasi;
 import com.example.smklabusta.Model.ResponseSiswa;
 import com.example.smklabusta.Model.ResponseSiswaProfil;
 
@@ -19,7 +20,7 @@ public interface APIservice {
 
     @FormUrlEncoded
     @POST("getsiswaNISN")
-    Call<ResponseSiswaProfil> getsiswa(@Field("Nomor_Induk") String nisnfix);
+    Call<ResponseProfilRelasi> getsiswa(@Field("Nomor_Induk") String nisnfix);
 
     @FormUrlEncoded
     @POST("Login")

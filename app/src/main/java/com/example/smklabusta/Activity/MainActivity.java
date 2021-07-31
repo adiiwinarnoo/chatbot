@@ -49,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
                 profileFragment.setArguments(bundle);
                 return true;
 
+//                if (chatFragment!=null){
+//                    if (chatFragment.equals("message")){
+//                        navigationView.setSelected(true);
+//                        fragmenChattTransaction.replace(R.id.chat, chatFragment);
+//                        navigationView.getSelectedItemId(chatFragment);
+//                    }
+//                }
+
 
         }
         return false;

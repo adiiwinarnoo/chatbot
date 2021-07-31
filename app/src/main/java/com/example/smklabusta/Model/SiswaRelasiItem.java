@@ -2,10 +2,13 @@ package com.example.smklabusta.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SiswaProfilItem{
+public class SiswaRelasiItem{
 
 	@SerializedName("Nomor_Induk")
 	private String nomorInduk;
+
+	@SerializedName("jeniskelamin")
+	private String jeniskelamin;
 
 	@SerializedName("Nama")
 	private String nama;
@@ -16,15 +19,20 @@ public class SiswaProfilItem{
 	@SerializedName("Kelas")
 	private String kelas;
 
-	@SerializedName("Password")
-	private String password;
-
 	public void setNomorInduk(String nomorInduk){
 		this.nomorInduk = nomorInduk;
 	}
 
 	public String getNomorInduk(){
 		return nomorInduk;
+	}
+
+	public void setJeniskelamin(String jeniskelamin){
+		this.jeniskelamin = jeniskelamin;
+	}
+
+	public String getJeniskelamin(){
+		return jeniskelamin;
 	}
 
 	public void setNama(String nama){
@@ -49,13 +57,5 @@ public class SiswaProfilItem{
 
 	public String getKelas(){
 		return kelas;
-	}
-
-	public void setPassword(String password){
-		this.password = password;
-	}
-
-	public String getPassword(){
-		return password;
 	}
 }
