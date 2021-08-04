@@ -1,6 +1,7 @@
 package com.example.smklabusta.Model;
 
 public class Chat {
+
     private String pesan;
     private boolean isReceived;
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,9 +33,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
 
     @Override public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String message = messageList.get(position).getPesan();
+
         boolean isReceived = messageList.get(position).isReceived();
         if(isReceived){
             holder.messageReceive.setVisibility(View.VISIBLE);
+            holder.messageGambar.setVisibility(View.VISIBLE);
             holder.messageSend.setVisibility(View.GONE);
             holder.messageReceive.setText(message);
         }else {
@@ -53,11 +56,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
 
         TextView messageSend;
         TextView messageReceive;
+        ImageView messageGambar;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             messageSend = itemView.findViewById(R.id.message_send);
             messageReceive = itemView.findViewById(R.id.message_receive);
+            messageGambar = itemView.findViewById(R.id.messageGambar);
         }
     }
 

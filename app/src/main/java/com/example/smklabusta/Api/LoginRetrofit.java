@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginRetrofit {
     public static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://192.168.43.236/SMK_LABUSTA/index.php/ApiLogin/")
+            .baseUrl("http://labusta.000webhostapp.com/SMK_LABUSTA/index.php/ApiLogin/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 

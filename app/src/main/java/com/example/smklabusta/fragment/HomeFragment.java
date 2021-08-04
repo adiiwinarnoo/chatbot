@@ -69,6 +69,7 @@ public class HomeFragment extends Fragment {
                 chatFragment.setArguments(bundle);
                 fragmentTransactionChat.replace(R.id.controller, chatFragment).commit();
 
+
                 
 
             }

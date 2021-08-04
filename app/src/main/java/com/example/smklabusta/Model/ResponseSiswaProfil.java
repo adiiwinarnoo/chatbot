@@ -9,7 +9,7 @@ public class ResponseSiswaProfil{
 	private String pesan;
 
 	@SerializedName("siswa_profil")
-	private List<SiswaProfilItem> siswaProfil;
+	private List<SiswaRelasiItem> siswaProfil;
 
 	@SerializedName("status")
 	private int status;
@@ -22,11 +22,11 @@ public class ResponseSiswaProfil{
 		return pesan;
 	}
 
-	public void setSiswaProfil(List<SiswaProfilItem> siswaProfil){
+	public void setSiswaProfil(List<SiswaRelasiItem> siswaProfil){
 		this.siswaProfil = siswaProfil;
 	}
 
-	public List<SiswaProfilItem> getSiswaProfil(){
+	public List<SiswaRelasiItem> getSiswaProfil(){
 		return siswaProfil;
 	}
 

@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
                 Login();
             }
         });
@@ -61,11 +62,15 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        final loadingActivity loading = new loadingActivity(LoginActivity.this);
+        loading.show();
+
         LoginRetrofit.service.login(nisn,Password).enqueue(new Callback<ResponseSiswa>() {
                     @Override
                     public void onResponse(Call<ResponseSiswa> call, Response<ResponseSiswa> response) {
 //                        String pesan = response.body().getPesan();
 
+                        loading.dismiss();
                         int siswa = response.body().getStatus();
 
                         if (siswa == 1){
