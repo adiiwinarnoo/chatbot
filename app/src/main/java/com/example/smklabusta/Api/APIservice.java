@@ -1,6 +1,7 @@
 package com.example.smklabusta.Api;
 
 import com.example.smklabusta.Model.ResponseData;
+import com.example.smklabusta.Model.ResponseGetGuru;
 import com.example.smklabusta.Model.ResponsePesan;
 import com.example.smklabusta.Model.ResponseProfilRelasi;
 import com.example.smklabusta.Model.ResponseSiswa;
@@ -15,8 +16,11 @@ import retrofit2.http.Query;
 
 public interface APIservice {
 
+    @GET("getguru2")
+    Call<ResponseData> getguru2();
+
     @GET("getguru")
-    Call<ResponseData> getguru();
+    Call<ResponseGetGuru> getguru(@Query("id_guru") String idguru);
 
     @FormUrlEncoded
     @POST("getsiswaNISN")

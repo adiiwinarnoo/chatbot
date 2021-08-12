@@ -66,4 +66,6 @@ dependencies {
     //Lotties
     def lottieVersion= "4.0.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation 'com.pixplicity.easyprefs:library:1.9.0'
 }

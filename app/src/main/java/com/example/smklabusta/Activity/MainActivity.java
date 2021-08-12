@@ -13,6 +13,7 @@ import com.example.smklabusta.fragment.HomeFragment;
 import com.example.smklabusta.fragment.ProfileFragment;
 import com.example.smklabusta.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.pixplicity.easyprefs.library.Prefs;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
+    public BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
             =item -> {
         switch (item.getItemId()){
 
@@ -43,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
                 fragmentProfilTransaction.replace(R.id.controller, profileFragment);
                 fragmentProfilTransaction.commit();
 
-                nomor = getIntent().getStringExtra("nisn");
+//                nomor = getIntent().getStringExtra("nisn");
+                nomor = Prefs.getString("nisn","");
                 Bundle bundle = new Bundle();
                 bundle.putString("nisn",nomor);
                 profileFragment.setArguments(bundle);
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView = (BottomNavigationView) findViewById(R.id.navView);
         navigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+
 
 
 

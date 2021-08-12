@@ -1,5 +1,8 @@
 package com.example.smklabusta.fragment;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.speech.tts.TextToSpeech;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.EditText;
@@ -16,12 +20,20 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smklabusta.Activity.MainActivity2;
 import com.example.smklabusta.Adapter.ChatAdapter;
+import com.example.smklabusta.Adapter.DataAdapter;
+import com.example.smklabusta.Adapter.GuruAdapter;
+import com.example.smklabusta.Api.GuruRetrofit;
 import com.example.smklabusta.Api.SiswaRetrofit;
 import com.example.smklabusta.Api.pesanRetrofit;
 import com.example.smklabusta.Helper.SendMessageInBg;
+//import com.example.smklabusta.Helper.TexttoSpeech;
 import com.example.smklabusta.Interface.BotReply;
 import com.example.smklabusta.Model.Chat;
+import com.example.smklabusta.Model.DataGuruItem;
+import com.example.smklabusta.Model.GuruItem;
+import com.example.smklabusta.Model.ResponseGetGuru;
 import com.example.smklabusta.Model.ResponsePesan;
 import com.example.smklabusta.R;
 import com.google.api.gax.core.FixedCredentialsProvider;
@@ -38,6 +50,7 @@ import com.google.common.collect.Lists;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -48,22 +61,21 @@ import retrofit2.Response;
 
 public class ChattFragment extends Fragment implements BotReply {
 
-
-
-
-
-
     public ChattFragment(){
 
     }
     List<Chat> chats = new ArrayList<>();
-    RecyclerView recyclerView;
+    List<DataGuruItem> gurus = new ArrayList<>();
+    RecyclerView recyclerView, recguru;
     ChatAdapter chatAdapter;
+    GuruAdapter guruAdapter;
     EditText Pesan;
     ImageButton btnSend;
     TextView alamat,guru,tvSend;
 
 
+    //
+    TextToSpeech texttoSpeech;
 
 
 
@@ -82,14 +94,32 @@ public class ChattFragment extends Fragment implements BotReply {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chatt, container, false);
         chatAdapter = new ChatAdapter(chats, getContext());
+        guruAdapter = new GuruAdapter(getContext(), gurus);
         Pesan = view.findViewById(R.id.editMessage);
         recyclerView = view.findViewById(R.id.chatView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(chatAdapter);
+
+//        recguru = view.findViewById(R.id.rec_guru);
+//        recguru.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recguru.setAdapter(guruAdapter);
+
+
 //        EditText pesan = (EditText) view.findViewById(R.id.editMessage);
         btnSend= view.findViewById(R.id.btnSend);
         alamat= view.findViewById(R.id.tv_alamat);
         guru = view.findViewById(R.id.guru_tv);
+        texttoSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR){
+                    texttoSpeech.setLanguage(new Locale("id", "ID"));
+                    texttoSpeech.speak("saya bot labusta, Ada yang bisa saya bantu ?",TextToSpeech.QUEUE_FLUSH, null);
+                }else{
+                    Toast.makeText(getContext(),"ERROR", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
 
 
@@ -97,7 +127,7 @@ public class ChattFragment extends Fragment implements BotReply {
 
         Bundle bundle = getArguments();
 
-        String inimessage;
+        String inimessage, iniguru;
         if (bundle!=null){
             inimessage = bundle.getString("Message");
             Pesan.setText(inimessage);
@@ -114,7 +144,7 @@ public class ChattFragment extends Fragment implements BotReply {
 //                EditText text = (EditText) v.findViewById(R.id.editMessage);
                 String pesan = Pesan.getText().toString();
                 if (!pesan.isEmpty()){
-                    chats.add(new Chat(pesan, false));
+                    chats.add(new Chat(pesan, false,"",""));
                     Pesan.setText("");
                     sendMessageToBot(pesan);
                     Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
@@ -184,25 +214,83 @@ public class ChattFragment extends Fragment implements BotReply {
     @Override
     public void callback(DetectIntentResponse returnResponse) {
 
-
-        String response_messg = chats.get(count).getPesan().toString();
-
         if(returnResponse!=null) {
-            String botReply = returnResponse.getQueryResult().getFulfillmentText();
-            Log.d("BOT REPLY", returnResponse.getQueryResult().toString());
+            Log.d("BOTREPLY", String.valueOf(returnResponse.getQueryResult()));
 
-            if(!botReply.isEmpty()){
-                tambahpesan(response_messg,botReply);
-                count+=2;
-                chats.add(new Chat(botReply, true));
-                chatAdapter.notifyDataSetChanged();
-                Objects.requireNonNull(recyclerView.getLayoutManager()).scrollToPosition(chats.size() - 1);
+            int fulfilmentMessage = returnResponse.getQueryResult().getFulfillmentMessagesCount();
+            String botMessage =  "";
+            String myMessage = returnResponse.getQueryResult().getQueryText();
+            String intent = returnResponse.getQueryResult().getIntent().getDisplayName();
+            Log.d("Intent", intent);
 
-            }else {
-                Toast.makeText(recyclerView.getContext(), "ada yang salah nih", Toast.LENGTH_SHORT).show();
+            for(int i = 0; i < fulfilmentMessage ; i++){
+                String response_messg = "";
+
+                String botReply = String.valueOf(returnResponse.getQueryResult().getFulfillmentMessages(i).getText().getText(0));
+                if(i == fulfilmentMessage - 1){
+                    botMessage += botReply ;
+
+                }else {
+                    botMessage += botReply + ",";
+
+                }
+
+                if(!botReply.isEmpty()){
+                    Log.d(TAG, "data guru");
+                    count+=1;
+                    String arr[] = botReply.split(" ", 2);
+
+                    String type = arr[0];
+                    if(type.equals("@picture")){
+                        String url = arr[1];
+                        chats.add(new Chat("gambar", true,"picture",url));
+
+                    }else{
+                        texttoSpeech.speak(botReply,TextToSpeech.QUEUE_FLUSH,null);
+                        chats.add(new Chat(botReply, true,"text",""));
+                    }
+                    chatAdapter.notifyDataSetChanged();
+                    Objects.requireNonNull(recyclerView.getLayoutManager()).scrollToPosition(chats.size() - 1);
+
+                }else {
+                    Toast.makeText(recyclerView.getContext(), "ada yang salah nih", Toast.LENGTH_SHORT).show();
+                }
             }
+
+                tambahpesan(myMessage, botMessage);
+
+
+
         } else {
             Toast.makeText(recyclerView.getContext(), "failed to connect!", Toast.LENGTH_SHORT).show();
         }
     }
+    private void tampilguru(String idguru){
+        GuruRetrofit.service.getguru(idguru).enqueue(new Callback<ResponseGetGuru>() {
+            @Override
+            public void onResponse(Call<ResponseGetGuru> call, Response<ResponseGetGuru> response) {
+                int status = response.body().getStatus();
+                if (status == 1){
+                    List<DataGuruItem> dataGuruList = response.body().getDataGuru();
+                    GuruAdapter adapter = new GuruAdapter(getContext(), dataGuruList);
+                    recguru.setAdapter(adapter);
+                    recguru.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                }else{
+                    Toast.makeText(getContext(), "Data Guru Tidak Ada", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(Call<ResponseGetGuru> call, Throwable t) {
+                Log.d(TAG, "data guru: "+t.getMessage());
+            }
+        });
+    }
+
+
+
 }
+

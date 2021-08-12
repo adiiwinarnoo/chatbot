@@ -60,7 +60,12 @@
         tools:itemCount="2"
         tools:listitem="@layout/adapter_message_one">
 
+
+
     </androidx.recyclerview.widget.RecyclerView>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

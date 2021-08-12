@@ -15,12 +15,14 @@ public class Adapter extends PagerAdapter {
     Context context;
     CardView card1,card2,card3,card4;
 
-    private int[] images = new int[]{R.drawable.labusta, R.drawable.labusta2};
+    private int[] images = new int[]{R.drawable.labusta, R.drawable.labusta2, R.drawable.gurulabusta, R.drawable.lapangan};
 
 
+    private String [] imStrings = new String[R.drawable.lapangan];
 
     @Override
     public int getCount() {
+
         return images.length;
     }
 
@@ -38,6 +40,7 @@ public class Adapter extends PagerAdapter {
         imageview.setImageResource(images[position]);
         container.addView(imageview,0);
         return imageview;
+
     }
 
     @Override

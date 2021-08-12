@@ -41,7 +41,7 @@
                             android:background="@drawable/bg_indicator"/>
 
                     <LinearLayout
-                        android:id="@+id/containeer"
+                        android:id="@+id/containeerL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -202,6 +202,7 @@
                                 android:src="@drawable/ic_baseline_info_24">
                             </ImageView>
                             <TextView
+                                android:id="@+id/tvInformasi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"

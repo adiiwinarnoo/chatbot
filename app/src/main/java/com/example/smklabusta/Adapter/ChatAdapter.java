@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.smklabusta.R;
 import com.example.smklabusta.Model.Chat;
 import java.util.List;
@@ -35,15 +38,31 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
         String message = messageList.get(position).getPesan();
 
         boolean isReceived = messageList.get(position).isReceived();
+        String type = messageList.get(position).getType();
         if(isReceived){
-            holder.messageReceive.setVisibility(View.VISIBLE);
-            holder.messageGambar.setVisibility(View.VISIBLE);
-            holder.messageSend.setVisibility(View.GONE);
-            holder.messageReceive.setText(message);
+            if(type.equals("picture")){
+                Glide.with(holder.itemView.getContext())
+                        .load(messageList.get(position).getGambar())
+                        .apply(new RequestOptions().override(120, 150))
+                        .into(holder.messageGambar);
+
+                holder.messageReceive.setVisibility(View.GONE);
+                holder.messageSend.setVisibility(View.GONE);
+                holder.messageGambar.setVisibility(View.VISIBLE);
+                holder.messageReceive.setText(message);
+
+            }else{
+                holder.messageReceive.setVisibility(View.VISIBLE);
+                holder.messageSend.setVisibility(View.GONE);
+                holder.messageGambar.setVisibility(View.GONE);
+                holder.messageReceive.setText(message);
+            }
+
         }else {
             count++;
             holder.messageSend.setVisibility(View.VISIBLE);
             holder.messageReceive.setVisibility(View.GONE);
+            holder.messageGambar.setVisibility(View.GONE);
             holder.messageSend.setText(message);
         }
     }
@@ -57,12 +76,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
         TextView messageSend;
         TextView messageReceive;
         ImageView messageGambar;
+        RecyclerView recyclerGuru;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             messageSend = itemView.findViewById(R.id.message_send);
             messageReceive = itemView.findViewById(R.id.message_receive);
-            messageGambar = itemView.findViewById(R.id.messageGambar);
+            messageGambar = itemView.findViewById(R.id.typeGambar);
+//            recyclerGuru = itemView.findViewById(R.id.rec_guru);
         }
     }
 

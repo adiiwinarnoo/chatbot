@@ -20,6 +20,7 @@ import com.example.smklabusta.Model.ResponseProfilRelasi;
 import com.example.smklabusta.Model.ResponseSiswaProfil;
 import com.example.smklabusta.Model.SiswaRelasiItem;
 import com.example.smklabusta.R;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
 
@@ -61,7 +62,6 @@ public class ProfileFragment extends Fragment {
 
         if (bundle != null){
             nisnfix = bundle.getString("nisn");
-//            nisn.setText(nisnfix);
             tampilProfil();
 
         }
@@ -71,6 +71,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
+                Prefs.putInt("LOGOUT",0);
 
             }
         });

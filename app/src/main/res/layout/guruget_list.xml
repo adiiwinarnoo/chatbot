@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="50dp"
+    app:cardCornerRadius="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    app:cardElevation="20dp"
+    android:layout_marginBottom="-40dp"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@color/teal_700"
+        >
+
+        <TextView
+            android:id="@+id/tv_namaguru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama guru :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+
+            />
+        <TextView
+            android:id="@+id/tv_nisnguru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nomor Induk :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+
+            />
+        <TextView
+            android:id="@+id/tv_mapelguru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pelajaran :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

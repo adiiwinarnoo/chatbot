@@ -34,7 +34,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     private void ambilData() {
 
-        ConfigRetrofit.service.getguru().enqueue(new Callback<ResponseData>() {
+        ConfigRetrofit.service.getguru2().enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 int status = response.body().getStatus();

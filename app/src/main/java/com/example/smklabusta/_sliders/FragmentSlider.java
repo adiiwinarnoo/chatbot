@@ -37,7 +37,7 @@ public class FragmentSlider extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         imageUrls = getArguments().getString(ARG_PARAM1);
-        Uri uri = Uri.parse("android.resource://com.example.menu/drawable/"+imageUrls);
+        Uri uri = Uri.parse("android.resource://com.example.smklabusta/drawable/"+imageUrls);
         View view = inflater.inflate(R.layout.fragment_slider_item, container, false);
         ImageView img = (ImageView) view.findViewById(R.id.img);
         Glide.with(getActivity())
