@@ -1,3 +1,4 @@
+
 package com.example.smklabusta.fragment;
 
 import android.content.Intent;
@@ -66,7 +67,7 @@ public class ChattFragment extends Fragment implements BotReply {
     }
     List<Chat> chats = new ArrayList<>();
     List<DataGuruItem> gurus = new ArrayList<>();
-    RecyclerView recyclerView, recguru;
+    RecyclerView recyclerView, recgurur;
     ChatAdapter chatAdapter;
     GuruAdapter guruAdapter;
     EditText Pesan;
@@ -99,6 +100,7 @@ public class ChattFragment extends Fragment implements BotReply {
         recyclerView = view.findViewById(R.id.chatView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(chatAdapter);
+//        recgurur = view.findViewById(R.id.rec_gurur);
 
 //        recguru = view.findViewById(R.id.rec_guru);
 //        recguru.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -225,8 +227,9 @@ public class ChattFragment extends Fragment implements BotReply {
 
             for(int i = 0; i < fulfilmentMessage ; i++){
                 String response_messg = "";
-
+    
                 String botReply = String.valueOf(returnResponse.getQueryResult().getFulfillmentMessages(i).getText().getText(0));
+
                 if(i == fulfilmentMessage - 1){
                     botMessage += botReply ;
 
@@ -237,6 +240,7 @@ public class ChattFragment extends Fragment implements BotReply {
 
                 if(!botReply.isEmpty()){
                     Log.d(TAG, "data guru");
+
                     count+=1;
                     String arr[] = botReply.split(" ", 2);
 
@@ -246,8 +250,10 @@ public class ChattFragment extends Fragment implements BotReply {
                         chats.add(new Chat("gambar", true,"picture",url));
 
                     }else{
+                        tampilguru(botReply);
                         texttoSpeech.speak(botReply,TextToSpeech.QUEUE_FLUSH,null);
                         chats.add(new Chat(botReply, true,"text",""));
+
                     }
                     chatAdapter.notifyDataSetChanged();
                     Objects.requireNonNull(recyclerView.getLayoutManager()).scrollToPosition(chats.size() - 1);
@@ -266,15 +272,15 @@ public class ChattFragment extends Fragment implements BotReply {
         }
     }
     private void tampilguru(String idguru){
-        GuruRetrofit.service.getguru(idguru).enqueue(new Callback<ResponseGetGuru>() {
+        GuruRetrofit.service.getguru3(idguru).enqueue(new Callback<ResponseGetGuru>() {
             @Override
             public void onResponse(Call<ResponseGetGuru> call, Response<ResponseGetGuru> response) {
                 int status = response.body().getStatus();
                 if (status == 1){
                     List<DataGuruItem> dataGuruList = response.body().getDataGuru();
                     GuruAdapter adapter = new GuruAdapter(getContext(), dataGuruList);
-                    recguru.setAdapter(adapter);
-                    recguru.setLayoutManager(new LinearLayoutManager(getContext()));
+                    recgurur.setAdapter(adapter);
+                    recgurur.setLayoutManager(new LinearLayoutManager(getContext()));
 
                 }else{
                     Toast.makeText(getContext(), "Data Guru Tidak Ada", Toast.LENGTH_SHORT).show();

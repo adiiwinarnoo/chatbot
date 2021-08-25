@@ -1,5 +1,7 @@
 package com.example.smklabusta.Model;
 
+import java.util.List;
+
 public class Chat {
 
     private String pesan;
@@ -44,5 +46,16 @@ public class Chat {
 
     public void setReceived(boolean received) {
         this.isReceived = isReceived;
+    }
+
+    private List<DataGuruItem> dataGuruItems;
+
+
+    public List<DataGuruItem> getDataGuruItems() {
+        return dataGuruItems;
+    }
+
+    public void setDataGuruItems(List<DataGuruItem> dataGuruItems) {
+        this.dataGuruItems = dataGuruItems;
     }
 }

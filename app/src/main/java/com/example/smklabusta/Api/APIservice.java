@@ -19,8 +19,8 @@ public interface APIservice {
     @GET("getguru2")
     Call<ResponseData> getguru2();
 
-    @GET("getguru")
-    Call<ResponseGetGuru> getguru(@Query("id_guru") String idguru);
+    @GET("getguru3")
+    Call<ResponseGetGuru> getguru3(@Query("id_guru") String idguru);
 
     @FormUrlEncoded
     @POST("getsiswaNISN")

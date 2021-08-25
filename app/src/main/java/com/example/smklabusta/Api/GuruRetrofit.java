@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GuruRetrofit {
     public static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.15/SMK_LABUSTA/index.php/Apiguru/")
+            .baseUrl("http://192.168.43.26/SMK_LABUSTA/index.php/Apiguru/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 

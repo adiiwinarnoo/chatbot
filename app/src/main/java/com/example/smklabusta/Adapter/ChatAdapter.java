@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.smklabusta.Model.DataGuruItem;
 import com.example.smklabusta.R;
 import com.example.smklabusta.Model.Chat;
 import java.util.List;
@@ -29,13 +31,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
     }
 
     @NonNull @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.adapter_message_one, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+
+
         String message = messageList.get(position).getPesan();
+//        String text = messageList.get(position).getDataGuruItems().get(position).getPelajaran();
 
         boolean isReceived = messageList.get(position).isReceived();
         String type = messageList.get(position).getType();
@@ -46,7 +52,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
                         .apply(new RequestOptions().override(120, 150))
                         .into(holder.messageGambar);
 
-                holder.messageReceive.setVisibility(View.GONE);
+                holder.messageReceive.setVisibility(View.VISIBLE);
                 holder.messageSend.setVisibility(View.GONE);
                 holder.messageGambar.setVisibility(View.VISIBLE);
                 holder.messageReceive.setText(message);
@@ -56,6 +62,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
                 holder.messageSend.setVisibility(View.GONE);
                 holder.messageGambar.setVisibility(View.GONE);
                 holder.messageReceive.setText(message);
+
             }
 
         }else {
@@ -65,6 +72,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
             holder.messageGambar.setVisibility(View.GONE);
             holder.messageSend.setText(message);
         }
+
+
+
     }
 
     @Override public int getItemCount() {
@@ -75,6 +85,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
 
         TextView messageSend;
         TextView messageReceive;
+        TextView messsageQuery;
         ImageView messageGambar;
         RecyclerView recyclerGuru;
 
@@ -83,7 +94,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
             messageSend = itemView.findViewById(R.id.message_send);
             messageReceive = itemView.findViewById(R.id.message_receive);
             messageGambar = itemView.findViewById(R.id.typeGambar);
-//            recyclerGuru = itemView.findViewById(R.id.rec_guru);
+//            recyclerGuru = itemView.findViewById(R.id.rec_gurur);
         }
     }
 

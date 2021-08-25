@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class GuruAdapter extends RecyclerView.Adapter<GuruAdapter.Holderguru> {
-
+    List<DataGuruItem> dataGuruItems;
     Context context;
 
     public GuruAdapter(Context context, List<DataGuruItem> dataGuruItems) {
@@ -28,7 +28,7 @@ public class GuruAdapter extends RecyclerView.Adapter<GuruAdapter.Holderguru> {
         this.dataGuruItems = dataGuruItems;
     }
 
-    List<DataGuruItem> dataGuruItems;
+
 
     @Override
     public Holderguru onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,6 +39,7 @@ public class GuruAdapter extends RecyclerView.Adapter<GuruAdapter.Holderguru> {
 
     @Override
     public void onBindViewHolder(Holderguru holder, int position) {
+
 
         DataGuruItem dataGuruItem = dataGuruItems.get(position);
         Glide.with(holder.itemView.getContext())
@@ -53,7 +54,8 @@ public class GuruAdapter extends RecyclerView.Adapter<GuruAdapter.Holderguru> {
 
     @Override
     public int getItemCount() {
-        return 0;
+
+        return dataGuruItems.size();
     }
 
     public class Holderguru extends RecyclerView.ViewHolder {
